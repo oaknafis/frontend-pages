@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Registration Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #b3d7e6, #bbdce9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .signup-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+    }
+
+    .signup-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #a83232;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: 0.3s;
+        box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+        border-color: #a83232;
+        outline: none;
+    }
+
+    .form-group input[type="file"] {
+        padding: 3px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: #a83232;
+        color: white;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+        background: #7a1e1e;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+    }
+
+    /* ✅ Responsive adjustments */
+    @media (max-width: 768px) {
+        .signup-container {
+            padding: 15px;
+            max-width: 90%;
+        }
+
+        .btn-submit {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .signup-container {
+            padding: 12px;
+            max-width: 100%;
+        }
+
+        .form-group input {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .btn-submit {
+            font-size: 15px;
+            padding: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h2>Student Registration Form</h2>
+    <form id="signupForm">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" required>
+            <p id="passwordError" class="error"></p>
+        </div>
+
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstName" required>
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastName" required>
+        </div>
+
+        <div class="form-group">
+            <label>Registration Date</label>
+            <input type="date" name="registrationDate" required>
+        </div>
+
+        <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" name="picture" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn-submit">Register</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let errorText = document.getElementById("passwordError");
+
+    if (password !== confirmPassword) {
+        errorText.textContent = "Passwords do not match!";
+        event.preventDefault();
+    } else {
+        errorText.textContent = "";
+    }
+});
+</script>
+
+</body>
+</html>
